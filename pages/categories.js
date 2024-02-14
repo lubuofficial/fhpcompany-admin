@@ -115,8 +115,8 @@ function Categories({swal}) {
             onChange={event => setParentCategory(event.target.value)}
             value={parentCategory}>
         <option value="">No parent category</option>
-        {categories.length > 0 && categories.map((category,index) =>(
-           <option key={index} value={category._id}>{category.name}</option>
+        {categories.length > 0 && categories.map(category =>(
+           <option key={category._id} value={category._id}>{category.name}</option>
         ))}
     </select>
    </div>
@@ -187,8 +187,8 @@ function Categories({swal}) {
                         </td>
                 </tr>
             )}
-            {categories.length > 0 && categories.map((category,index) =>(
-                <tr key={index}>
+            {categories.length > 0 && categories.map(category =>(
+                <tr key={category._id}>
                     <td>{category.name}</td>
                     <td>{category?.parent?.name}</td>
                     <td>

@@ -36,8 +36,8 @@ export default function OrdersPage() {
                             </td>
                         </tr>
                     )}
-                    {orders.length > 0 && orders.map((order, index) => (
-                        <tr key={index}>
+                    {orders.length > 0 && orders.map(order => (
+                        <tr key={order._id}>
                             <td>{(new Date(order.createdAt))
                             .toLocaleString()}
                             </td>
