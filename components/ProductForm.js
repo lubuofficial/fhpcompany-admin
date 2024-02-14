@@ -116,11 +116,15 @@ export default function ProductForm({
       <select value={category} onChange={(ev) => setCategory(ev.target.value)}>
         <option value="">Uncategorize</option>
         {categories.length > 0 &&
-          categories.map(c=> <option key={c._id} value={c._id}>{c.name}</option>)}
+          categories.map((c) => (
+            <option key={c._id} value={c._id}>
+              {c.name}
+            </option>
+          ))}
       </select>
       {categoriesLoading && <Spinner />}
       {propertiesToFill.length > 0 &&
-        propertiesToFill.map(p => (
+        propertiesToFill.map((p) => (
           <div key={p.name} classname="">
             <label>{p.name[0].toUpperCase() + p.name.substring(1)}</label>
             <div>
@@ -128,8 +132,10 @@ export default function ProductForm({
                 value={productProperties[p.name]}
                 onChange={(event) => setProductProp(p.name, event.target.value)}
               >
-                {p.values.map(v=> (
-                  <option key={v} value={v}>{v}</option>
+                {p.values.map((v) => (
+                  <option key={v} value={v}>
+                    {v}
+                  </option>
                 ))}
               </select>
             </div>
@@ -143,14 +149,23 @@ export default function ProductForm({
           setList={updateImagesOrder}
         >
           {!!images?.length &&
-            images.map(link => (
+            images.map((link) => (
               <div
                 key={link}
                 className="relative h-24 bg-white p-4 shadow-sm rounded-sm border border-gray-200"
               >
                 <img src={link} alt="" className="rounded-lg" />
                 <button
-                  onClick={() => deleteImage(index)}
+                  onClick={() => {
+                    // Display confirmation dialog
+                    if (window.confirm("Are you sure you want to delete?")) {
+                      // If user confirms, call deleteImage() function
+                      deleteImage();
+                    } else {
+                      // If user cancels, do nothing
+                      // You can add any additional action here if needed
+                    }
+                  }}
                   className="absolute top-0 right-0 p-1"
                 >
                   <svg
