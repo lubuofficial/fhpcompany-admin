@@ -116,20 +116,20 @@ export default function ProductForm({
       <select value={category} onChange={(ev) => setCategory(ev.target.value)}>
         <option value="">Uncategorize</option>
         {categories.length > 0 &&
-          categories.map((c) => <option value={c._id}>{c.name}</option>)}
+          categories.map((c,index) => <option key={index} value={c._id}>{c.name}</option>)}
       </select>
       {categoriesLoading && <Spinner />}
       {propertiesToFill.length > 0 &&
-        propertiesToFill.map((p) => (
-          <div classname="">
+        propertiesToFill.map((p,index) => (
+          <div key={index} classname="">
             <label>{p.name[0].toUpperCase() + p.name.substring(1)}</label>
             <div>
               <select
                 value={productProperties[p.name]}
                 onChange={(event) => setProductProp(p.name, event.target.value)}
               >
-                {p.values.map((v) => (
-                  <option value={v}>{v}</option>
+                {p.values.map((v,index) => (
+                  <option key={index} value={v}>{v}</option>
                 ))}
               </select>
             </div>
