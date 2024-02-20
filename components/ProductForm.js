@@ -12,6 +12,7 @@ export default function ProductForm({
   images: existingImages,
   category: assignedCategory,
   properties: assignedProperties,
+  stockAvailability: existingStockAvailability,
 }) {
   const [title, setTitle] = useState(existingTitle || "");
   const [description, setDescription] = useState(existingDescription || "");
@@ -25,6 +26,9 @@ export default function ProductForm({
   const [isUploading, setIsUploading] = useState(false);
   const [categories, setCategories] = useState([]); //[{_id,name,parent}
   const [categoriesLoading, setCategoriesLoading] = useState(false); //true or false
+  const [stockAvailability, setStockAvailability] = useState(
+    existingStockAvailability || false
+  );
   const router = useRouter();
   useEffect(() => {
     setCategoriesLoading(true);
@@ -43,6 +47,7 @@ export default function ProductForm({
       images,
       category,
       properties: productProperties,
+      stockAvailability,
     };
     if (_id) {
       //update
@@ -223,6 +228,16 @@ export default function ProductForm({
         value={price}
         onChange={(event) => setPrice(event.target.value)}
       />
+      <label>Stock Availability</label>
+      <select
+        value={stockAvailability ? "true" : "false"}
+        onChange={(event) =>
+          setStockAvailability(event.target.value === "true")
+        }
+      >
+        <option value={true}>Available</option>
+        <option value={false}>Not Available</option>
+      </select>
       <button type="submit" className="btn-primary">
         Save
       </button>
