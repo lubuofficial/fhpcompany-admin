@@ -9,6 +9,7 @@ const OrderSchema = new Schema({
     postalCode:String,
     phone:String,
     paid:Boolean,
+    deliveryStatus: String,
 },{
     timestamps: true,
 });
